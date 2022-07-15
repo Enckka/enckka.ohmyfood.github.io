@@ -1,10 +1,15 @@
+html, body {
+  width: 768px;
+  overflow-x: hidden;
+}
+
 #headertitle {
+  height: 135px;
+  width: 768px;
   display: flex;
   flex-wrap: wrap;
-  height: 135px;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 1px 5px;
 }
 #headertitle .title {
   font-family: "Shrikhand", cursive;
@@ -13,6 +18,7 @@
 
 #headerlocalization {
   height: 110px;
+  width: 768px;
   background: #EAEAEA;
   display: flex;
   align-items: center;
@@ -29,12 +35,13 @@
 }
 
 #reservation {
+  height: 615px;
+  width: 768px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   background: #F6F6F6;
-  height: 615px;
   font-family: "Roboto";
 }
 #reservation .reservationtitle {
@@ -50,6 +57,7 @@
   margin-bottom: 50px;
 }
 #reservation .reservationbutton {
+  width: 500px;
   font-size: 40px;
   background: #FF79DA;
   color: white;
@@ -58,8 +66,8 @@
   padding-right: 30px;
   padding-top: 30px;
   padding-bottom: 30px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 #fonctionnement {
@@ -68,6 +76,7 @@
   flex-direction: column;
   background: white;
   height: 920px;
+  width: 768px;
   font-family: "Roboto";
 }
 #fonctionnement .fonctionnementtitle {
@@ -79,6 +88,7 @@
 }
 #fonctionnement .fonctionnementbox {
   height: 90px;
+  width: 650px;
   margin-left: 60px;
   margin-right: 60px;
   border-radius: 50px;
@@ -88,6 +98,7 @@
   padding-top: 60px;
   font-weight: bold;
   font-size: 35px;
+  margin-bottom: 60px;
 }
 #fonctionnement .fonctionnementboxnumber {
   float: left;
@@ -109,9 +120,60 @@
   font-size: 50px;
 }
 
-footer {
-  background: #353535;
+#restaurants {
+  height: 2650px;
+  width: 768px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background: #F6F6F6;
+  font-family: "Roboto";
+}
+#restaurants .restaurantstitle {
+  font-weight: bold;
+  font-size: 50px;
+  margin-left: 40px;
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+#restaurants .restaurantbox {
+  height: 545px;
+  width: 675px;
+  background: white;
+  border-radius: 30px;
+  margin-left: 47px;
+  margin-right: 47px;
+  margin-bottom: 35px;
+}
+#restaurants .restaurantbox .restaurantboximage {
   width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+#restaurants .restaurantbox .restaurantboxtitle {
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 25px;
+  margin-top: 30px;
+}
+#restaurants .restaurantbox .restaurantboxtext {
+  font-weight: lighter;
+  font-size: 30px;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+#restaurants .restaurantbox i {
+  float: right;
+  margin-right: 35px;
+  font-size: 50px;
+}
+
+footer {
+  height: 350px;
+  width: 768px;
+  background: #353535;
   display: flex;
   flex-direction: row;
   color: white;
