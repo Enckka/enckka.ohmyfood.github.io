@@ -4,7 +4,7 @@
   height: 135px;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 1px 5px black;
+  box-shadow: 0px 1px 5px;
 }
 #headertitle .title {
   font-family: "Shrikhand", cursive;
@@ -13,7 +13,125 @@
 
 #headerlocalization {
   height: 110px;
-  background: lightgray;
+  background: #EAEAEA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #353535;
+  font-size: 30px;
+}
+#headerlocalization .pinmap {
+  margin-right: 30px;
+}
+#headerlocalization .localization {
+  font-weight: bold;
+  font-family: "Roboto";
+}
+
+#reservation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background: #F6F6F6;
+  height: 615px;
+  font-family: "Roboto";
+}
+#reservation .reservationtitle {
+  font-weight: bold;
+  font-size: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 30px;
+}
+#reservation .reservationtext {
+  font-weight: lighter;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+#reservation .reservationbutton {
+  font-size: 40px;
+  background: #FF79DA;
+  color: white;
+  border-radius: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+#fonctionnement {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background: white;
+  height: 920px;
+  font-family: "Roboto";
+}
+#fonctionnement .fonctionnementtitle {
+  font-weight: bold;
+  font-size: 50px;
+  margin-left: 40px;
+  margin-top: 100px;
+  margin-bottom: 65px;
+}
+#fonctionnement .fonctionnementbox {
+  height: 90px;
+  margin-left: 60px;
+  margin-right: 60px;
+  border-radius: 50px;
+  background: #F6F6F6;
+  text-align: center;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  padding-top: 60px;
+  font-weight: bold;
+  font-size: 35px;
+}
+#fonctionnement .fonctionnementboxnumber {
+  float: left;
+  border-radius: 100px;
+  background: #9356DC;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  color: white;
+  font-size: 20px;
+  margin-left: -20px;
+}
+#fonctionnement i {
+  float: left;
+  color: #7E7E7E;
+  margin-left: 55px;
+  margin-top: -5px;
+  font-size: 50px;
+}
+
+footer {
+  background: #353535;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+footer .footertitle {
+  list-style-type: none;
+  font-family: "Shrikhand", cursive;
+  font-size: 35px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+footer .footerlist {
+  list-style-type: none;
+  font-family: "Roboto";
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+footer i {
+  float: left;
+  margin-right: 15px;
 }
 
 /*# sourceMappingURL=smartphone.css.map */
