@@ -1,5 +1,6 @@
 html, body{
     width: 768px;
+    height: 100%;
     overflow-x: hidden;
 }
 
@@ -237,5 +238,20 @@ footer {
     i {
         float: left;
         margin-right: 15px;
+    }
+}
+
+#menu {
+    background: url(/images/restaurants/toa-heftiba-DQKerTsQwi0-unsplash.jpg);
+    background-size: 115%;
+    background-repeat: no-repeat;
+    padding-top: 475px;
+
+    .menu {
+        width: 768px;
+        height: 500px;
+        background: #F6F6F6;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
     }
 }
