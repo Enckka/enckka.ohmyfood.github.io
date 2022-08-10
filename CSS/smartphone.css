@@ -2,7 +2,50 @@ html,
 body {
   width: 768px;
   height: 100%;
-  overflow-x: hidden;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transform: 1000ms;
+}
+.preloader .loader {
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+.preloader .loader::before {
+  content: "";
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border: 30px solid;
+  border-color: transparent transparent #FF79DA transparent;
+  border-radius: 50%;
+  animation: loader 750ms infinite;
 }
 
 #headertitle {
@@ -76,6 +119,9 @@ body {
   padding-bottom: 30px;
   margin-left: 100px;
   margin-right: 100px;
+}
+#reservation .reservationbutton:hover {
+  background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
 }
 
 #fonctionnement {
@@ -240,6 +286,12 @@ footer i {
   -webkit-text-stroke: 2px black;
 }
 #menulapalettedugout .menubox .menutitle i:hover {
+  animation: fadein 2s;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
   background-image: linear-gradient(-1deg, #9356DC, #FF79DA);
   background-clip: text;
   -webkit-background-clip: text;
@@ -256,7 +308,7 @@ footer i {
   margin-left: 30px;
   margin-top: 20px;
 }
-#menulapalettedugout .menubox .menumealbox {
+#menulapalettedugout .menubox .menumealboxentrees {
   width: 710px;
   height: 110px;
   border-radius: 30px;
@@ -268,15 +320,72 @@ footer i {
   flex-direction: row;
   justify-content: flex-start;
   overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxtext {
+#menulapalettedugout .menubox .menumealboxentrees:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulapalettedugout .menubox .menumealboxentrees:hover i {
+  transform: rotate(1080deg);
+}
+#menulapalettedugout .menubox .menumealboxplats {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+#menulapalettedugout .menubox .menumealboxplats:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulapalettedugout .menubox .menumealboxplats:hover i {
+  transform: rotate(1080deg);
+}
+#menulapalettedugout .menubox .menumealboxdesserts {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: backwards;
+}
+#menulapalettedugout .menubox .menumealboxdesserts:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulapalettedugout .menubox .menumealboxdesserts:hover i {
+  transform: rotate(1080deg);
+}
+#menulapalettedugout .menubox .menumealboxtext {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxtext .menumealboxtitle {
+#menulapalettedugout .menubox .menumealboxtext .menumealboxtitle {
   font-family: "Roboto";
   font-size: 30px;
   font-weight: bold;
@@ -285,7 +394,7 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxtext .menumealboxsubtitle {
+#menulapalettedugout .menubox .menumealboxtext .menumealboxsubtitle {
   font-family: "Roboto";
   font-size: 25px;
   font-weight: lighter;
@@ -294,7 +403,7 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxprice {
+#menulapalettedugout .menubox .menumealboxprice {
   font-family: "Roboto";
   font-size: 25px;
   font-weight: bold;
@@ -306,7 +415,7 @@ footer i {
   margin-right: -60px;
   margin-left: 30px;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxcheck {
+#menulapalettedugout .menubox .menumealboxcheck {
   flex: 0;
   color: #f6f6f6;
   background-color: #99E2D0;
@@ -316,19 +425,12 @@ footer i {
   transform: translateX(175px);
   transition: 500ms;
 }
-#menulapalettedugout .menubox .menumealbox .menumealboxcheck i {
+#menulapalettedugout .menubox .menumealboxcheck i {
   transition: transform 500ms;
   margin-left: 30px;
   margin-top: 35px;
   margin-right: 30px;
   font-size: 40px;
-}
-#menulapalettedugout .menubox .menumealbox:hover .menumealboxcheck {
-  transform: translateX(0px);
-  margin-left: 100px;
-}
-#menulapalettedugout .menubox .menumealbox:hover i {
-  transform: rotate(1080deg);
 }
 #menulapalettedugout .menubox .menubutton {
   font-family: "Roboto";
@@ -345,6 +447,9 @@ footer i {
   margin-top: 100px;
   margin-right: 200px;
   box-shadow: 0px 21px 31px rgb(175, 175, 175);
+}
+#menulapalettedugout .menubox .menubutton:hover {
+  background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
 }
 
 #menulanoteenchantee {
@@ -374,6 +479,12 @@ footer i {
   -webkit-text-stroke: 2px black;
 }
 #menulanoteenchantee .menubox .menutitle i:hover {
+  animation: fadein 2s;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
   background-image: linear-gradient(-1deg, #9356DC, #FF79DA);
   background-clip: text;
   -webkit-background-clip: text;
@@ -390,7 +501,7 @@ footer i {
   margin-left: 30px;
   margin-top: 20px;
 }
-#menulanoteenchantee .menubox .menumealbox {
+#menulanoteenchantee .menubox .menumealboxentrees {
   width: 710px;
   height: 110px;
   border-radius: 30px;
@@ -402,16 +513,72 @@ footer i {
   flex-direction: row;
   justify-content: flex-start;
   overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxtext {
+#menulanoteenchantee .menubox .menumealboxentrees:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulanoteenchantee .menubox .menumealboxentrees:hover i {
+  transform: rotate(1080deg);
+}
+#menulanoteenchantee .menubox .menumealboxplats {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+#menulanoteenchantee .menubox .menumealboxplats:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulanoteenchantee .menubox .menumealboxplats:hover i {
+  transform: rotate(1080deg);
+}
+#menulanoteenchantee .menubox .menumealboxdesserts {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: backwards;
+}
+#menulanoteenchantee .menubox .menumealboxdesserts:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menulanoteenchantee .menubox .menumealboxdesserts:hover i {
+  transform: rotate(1080deg);
+}
+#menulanoteenchantee .menubox .menumealboxtext {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxtext .menumealboxtitle {
+#menulanoteenchantee .menubox .menumealboxtext .menumealboxtitle {
   font-family: "Roboto";
   font-size: 30px;
   font-weight: bold;
@@ -420,7 +587,7 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxtext .menumealboxsubtitle {
+#menulanoteenchantee .menubox .menumealboxtext .menumealboxsubtitle {
   font-family: "Roboto";
   font-size: 25px;
   font-weight: lighter;
@@ -429,19 +596,19 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxprice {
+#menulanoteenchantee .menubox .menumealboxprice {
   font-family: "Roboto";
-  flex: 1;
   font-size: 25px;
   font-weight: bold;
   color: #353535;
   text-align: end;
+  flex: 1;
   padding-top: 65px;
   transition: 500ms;
   margin-right: -60px;
   margin-left: 30px;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxcheck {
+#menulanoteenchantee .menubox .menumealboxcheck {
   flex: 0;
   color: #f6f6f6;
   background-color: #99E2D0;
@@ -451,19 +618,12 @@ footer i {
   transform: translateX(175px);
   transition: 500ms;
 }
-#menulanoteenchantee .menubox .menumealbox .menumealboxcheck i {
+#menulanoteenchantee .menubox .menumealboxcheck i {
   transition: transform 500ms;
   margin-left: 30px;
   margin-top: 35px;
   margin-right: 30px;
   font-size: 40px;
-}
-#menulanoteenchantee .menubox .menumealbox:hover .menumealboxcheck {
-  transform: translateX(0px);
-  margin-left: 100px;
-}
-#menulanoteenchantee .menubox .menumealbox:hover i {
-  transform: rotate(1080deg);
 }
 #menulanoteenchantee .menubox .menubutton {
   font-family: "Roboto";
@@ -480,6 +640,9 @@ footer i {
   margin-top: 100px;
   margin-right: 200px;
   box-shadow: 0px 21px 31px rgb(175, 175, 175);
+}
+#menulanoteenchantee .menubox .menubutton:hover {
+  background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
 }
 
 #menualafrancaise {
@@ -509,6 +672,12 @@ footer i {
   -webkit-text-stroke: 2px black;
 }
 #menualafrancaise .menubox .menutitle i:hover {
+  animation: fadein 2s;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
   background-image: linear-gradient(-1deg, #9356DC, #FF79DA);
   background-clip: text;
   -webkit-background-clip: text;
@@ -525,7 +694,7 @@ footer i {
   margin-left: 30px;
   margin-top: 20px;
 }
-#menualafrancaise .menubox .menumealbox {
+#menualafrancaise .menubox .menumealboxentrees {
   width: 710px;
   height: 110px;
   border-radius: 30px;
@@ -537,16 +706,72 @@ footer i {
   flex-direction: row;
   justify-content: flex-start;
   overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxtext {
+#menualafrancaise .menubox .menumealboxentrees:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menualafrancaise .menubox .menumealboxentrees:hover i {
+  transform: rotate(1080deg);
+}
+#menualafrancaise .menubox .menumealboxplats {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+#menualafrancaise .menubox .menumealboxplats:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menualafrancaise .menubox .menumealboxplats:hover i {
+  transform: rotate(1080deg);
+}
+#menualafrancaise .menubox .menumealboxdesserts {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: backwards;
+}
+#menualafrancaise .menubox .menumealboxdesserts:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menualafrancaise .menubox .menumealboxdesserts:hover i {
+  transform: rotate(1080deg);
+}
+#menualafrancaise .menubox .menumealboxtext {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxtext .menumealboxtitle {
+#menualafrancaise .menubox .menumealboxtext .menumealboxtitle {
   font-family: "Roboto";
   font-size: 30px;
   font-weight: bold;
@@ -555,7 +780,7 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxtext .menumealboxsubtitle {
+#menualafrancaise .menubox .menumealboxtext .menumealboxsubtitle {
   font-family: "Roboto";
   font-size: 25px;
   font-weight: lighter;
@@ -564,19 +789,19 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxprice {
+#menualafrancaise .menubox .menumealboxprice {
   font-family: "Roboto";
-  flex: 1;
   font-size: 25px;
   font-weight: bold;
   color: #353535;
   text-align: end;
+  flex: 1;
   padding-top: 65px;
   transition: 500ms;
   margin-right: -60px;
   margin-left: 30px;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxcheck {
+#menualafrancaise .menubox .menumealboxcheck {
   flex: 0;
   color: #f6f6f6;
   background-color: #99E2D0;
@@ -586,19 +811,12 @@ footer i {
   transform: translateX(175px);
   transition: 500ms;
 }
-#menualafrancaise .menubox .menumealbox .menumealboxcheck i {
+#menualafrancaise .menubox .menumealboxcheck i {
   transition: transform 500ms;
   margin-left: 30px;
   margin-top: 35px;
   margin-right: 30px;
   font-size: 40px;
-}
-#menualafrancaise .menubox .menumealbox:hover .menumealboxcheck {
-  transform: translateX(0px);
-  margin-left: 100px;
-}
-#menualafrancaise .menubox .menumealbox:hover i {
-  transform: rotate(1080deg);
 }
 #menualafrancaise .menubox .menubutton {
   font-family: "Roboto";
@@ -615,6 +833,9 @@ footer i {
   margin-top: 100px;
   margin-right: 200px;
   box-shadow: 0px 21px 31px rgb(175, 175, 175);
+}
+#menualafrancaise .menubox .menubutton:hover {
+  background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
 }
 
 #menuledelicedessens {
@@ -644,6 +865,12 @@ footer i {
   -webkit-text-stroke: 2px black;
 }
 #menuledelicedessens .menubox .menutitle i:hover {
+  animation: fadein 2s;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
   background-image: linear-gradient(-1deg, #9356DC, #FF79DA);
   background-clip: text;
   -webkit-background-clip: text;
@@ -660,7 +887,7 @@ footer i {
   margin-left: 30px;
   margin-top: 20px;
 }
-#menuledelicedessens .menubox .menumealbox {
+#menuledelicedessens .menubox .menumealboxentrees {
   width: 710px;
   height: 110px;
   border-radius: 30px;
@@ -672,16 +899,72 @@ footer i {
   flex-direction: row;
   justify-content: flex-start;
   overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxtext {
+#menuledelicedessens .menubox .menumealboxentrees:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menuledelicedessens .menubox .menumealboxentrees:hover i {
+  transform: rotate(1080deg);
+}
+#menuledelicedessens .menubox .menumealboxplats {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+#menuledelicedessens .menubox .menumealboxplats:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menuledelicedessens .menubox .menumealboxplats:hover i {
+  transform: rotate(1080deg);
+}
+#menuledelicedessens .menubox .menumealboxdesserts {
+  width: 710px;
+  height: 110px;
+  border-radius: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 21px 31px rgb(209, 209, 209);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: backwards;
+}
+#menuledelicedessens .menubox .menumealboxdesserts:hover .menumealboxcheck {
+  transform: translateX(0px);
+  margin-left: 100px;
+}
+#menuledelicedessens .menubox .menumealboxdesserts:hover i {
+  transform: rotate(1080deg);
+}
+#menuledelicedessens .menubox .menumealboxtext {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxtext .menumealboxtitle {
+#menuledelicedessens .menubox .menumealboxtext .menumealboxtitle {
   font-family: "Roboto";
   font-size: 30px;
   font-weight: bold;
@@ -690,7 +973,7 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxtext .menumealboxsubtitle {
+#menuledelicedessens .menubox .menumealboxtext .menumealboxsubtitle {
   font-family: "Roboto";
   font-size: 25px;
   font-weight: lighter;
@@ -699,19 +982,19 @@ footer i {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxprice {
+#menuledelicedessens .menubox .menumealboxprice {
   font-family: "Roboto";
-  flex: 1;
   font-size: 25px;
   font-weight: bold;
   color: #353535;
   text-align: end;
+  flex: 1;
   padding-top: 65px;
   transition: 500ms;
   margin-right: -60px;
   margin-left: 30px;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxcheck {
+#menuledelicedessens .menubox .menumealboxcheck {
   flex: 0;
   color: #f6f6f6;
   background-color: #99E2D0;
@@ -721,19 +1004,12 @@ footer i {
   transform: translateX(175px);
   transition: 500ms;
 }
-#menuledelicedessens .menubox .menumealbox .menumealboxcheck i {
+#menuledelicedessens .menubox .menumealboxcheck i {
   transition: transform 500ms;
   margin-left: 30px;
   margin-top: 35px;
   margin-right: 30px;
   font-size: 40px;
-}
-#menuledelicedessens .menubox .menumealbox:hover .menumealboxcheck {
-  transform: translateX(0px);
-  margin-left: 100px;
-}
-#menuledelicedessens .menubox .menumealbox:hover i {
-  transform: rotate(1080deg);
 }
 #menuledelicedessens .menubox .menubutton {
   font-family: "Roboto";
@@ -750,6 +1026,9 @@ footer i {
   margin-top: 100px;
   margin-right: 200px;
   box-shadow: 0px 21px 31px rgb(175, 175, 175);
+}
+#menuledelicedessens .menubox .menubutton:hover {
+  background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
 }
 
 /*# sourceMappingURL=smartphone.css.map */

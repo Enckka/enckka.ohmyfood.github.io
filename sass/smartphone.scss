@@ -2,36 +2,101 @@ html,
 body {
     width: 768px;
     height: 100%;
-    overflow-x: hidden;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @mixin roboto {
     font-family: 'Roboto';
 }
-
 @mixin shrikhand {
     font-family: 'Shrikhand', cursive;
 }
-
 @mixin primaire {
     background: #9356DC;
 }
-
 @mixin secondaire {
     background: #FF79DA;
 }
-
 @mixin secondairefancy {
     background-image: linear-gradient(-1deg, #9356DC, #FF79DA);
 }
-
+@mixin secondairefancyhover {
+    background-image: linear-gradient(-1deg, #a073d8, #faa5e2);
+}
 @mixin tertiaire {
     background: #99E2D0;
 }
 
+@mixin menumealbox {
+    width: 710px;
+    height: 110px;
+    border-radius: 30px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 21px 31px rgb(209, 209, 209);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+@mixin menumealboxhoveranim {
+    transform: translateX(0px);
+    margin-left: 100px;
+}
+@mixin menumealboxcheckanim {
+    transform: rotate(1080deg);
+}
+
 $primaire: #9356DC;
-$sacondaire: #FF79DA;
+$secondaire: #FF79DA;
 $tertiaire: #99E2D0;
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    transform: 1000ms;
+
+    .loader {
+        display: block;
+        width: 200px;
+        height: 200px;
+
+        &::before {
+            content: '';
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            border: 30px solid;
+            border-color: transparent transparent $secondaire transparent;
+            border-radius: 50%;
+            animation: loader 750ms infinite;
+        }
+    }
+}
 
 #headertitle {
     height: 135px;
@@ -110,6 +175,10 @@ $tertiaire: #99E2D0;
         padding-bottom: 30px;
         margin-left: 100px;
         margin-right: 100px;
+
+        &:hover {
+            @include secondairefancyhover();
+        }
     }
 
 }
@@ -290,6 +359,12 @@ footer {
                 -webkit-text-stroke: 2px black;
 
                 &:hover {
+                    animation: fadein 2s;
+                    -webkit-transition: opacity 2s ease-in;
+                    -moz-transition: opacity 2s ease-in;
+                    -ms-transition: opacity 2s ease-in;
+                    -o-transition: opacity 2s ease-in;
+                    transition: opacity 2s ease-in;
                     @include secondairefancy();
                     background-clip: text;
                     -webkit-background-clip: text;
@@ -310,86 +385,110 @@ footer {
             margin-top: 20px;
         }
 
-        .menumealbox {
-            width: 710px;
-            height: 110px;
-            border-radius: 30px;
-            margin-left: 30px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0px 21px 31px rgb(209, 209, 209);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            overflow: hidden;
+        .menumealboxentrees {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
 
-            .menumealboxtext {
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
-                padding-left: 20px;
-                overflow: hidden;
-                white-space: nowrap;
-                
-                .menumealboxtitle {
-                    @include roboto();
-                    font-size: 30px;
-                    font-weight: bold;
-                    padding-top: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                .menumealboxsubtitle {
-                    @include roboto();
-                    font-size: 25px;
-                    font-weight: lighter;
-                    padding-top: 10px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .menumealboxprice {
-                @include roboto();
-                font-size: 25px;
-                font-weight: bold;
-                color: #353535;
-                text-align: end;
-                flex: 1;
-                padding-top: 65px;
-                transition: 500ms;
-                margin-right: -60px;
-                margin-left: 30px;
-            }
-
-            .menumealboxcheck {
-                flex: 0;
-                color: #f6f6f6;
-                background-color: $tertiaire;
-                text-align: center;
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
-                transform: translateX(175px);
-                transition: 500ms;
-
-                i {
-                    transition: transform 500ms;
-                    margin-left: 30px;
-                    margin-top: 35px;
-                    margin-right: 30px;
-                    font-size: 40px;
-                }
-            }
 
             &:hover .menumealboxcheck {
-                transform: translateX(0px);
-                margin-left: 100px;
+                @include menumealboxhoveranim();
             }
 
             &:hover i {
-                transform: rotate(1080deg);
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxplats {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxdesserts {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxtext {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            padding-left: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            
+            .menumealboxtitle {
+                @include roboto();
+                font-size: 30px;
+                font-weight: bold;
+                padding-top: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .menumealboxsubtitle {
+                @include roboto();
+                font-size: 25px;
+                font-weight: lighter;
+                padding-top: 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .menumealboxprice {
+            @include roboto();
+            font-size: 25px;
+            font-weight: bold;
+            color: #353535;
+            text-align: end;
+            flex: 1;
+            padding-top: 65px;
+            transition: 500ms;
+            margin-right: -60px;
+            margin-left: 30px;
+        }
+
+        .menumealboxcheck {
+            flex: 0;
+            color: #f6f6f6;
+            background-color: $tertiaire;
+            text-align: center;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            transform: translateX(175px);
+            transition: 500ms;
+
+            i {
+                transition: transform 500ms;
+                margin-left: 30px;
+                margin-top: 35px;
+                margin-right: 30px;
+                font-size: 40px;
             }
         }
 
@@ -408,6 +507,10 @@ footer {
             margin-top: 100px;
             margin-right: 200px;
             box-shadow: 0px 21px 31px rgb(175, 175, 175);
+
+            &:hover {
+                @include secondairefancyhover();
+            }
         }
     }
 }
@@ -439,6 +542,12 @@ footer {
                 -webkit-text-stroke: 2px black;
 
                 &:hover {
+                    animation: fadein 2s;
+                    -webkit-transition: opacity 2s ease-in;
+                    -moz-transition: opacity 2s ease-in;
+                    -ms-transition: opacity 2s ease-in;
+                    -o-transition: opacity 2s ease-in;
+                    transition: opacity 2s ease-in;
                     @include secondairefancy();
                     background-clip: text;
                     -webkit-background-clip: text;
@@ -459,87 +568,110 @@ footer {
             margin-top: 20px;
         }
 
-        .menumealbox {
-            width: 710px;
-            height: 110px;
-            border-radius: 30px;
-            margin-left: 30px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0px 21px 31px rgb(209, 209, 209);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            overflow: hidden;
+        .menumealboxentrees {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
 
-            .menumealboxtext {
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
-                padding-left: 20px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                
-                .menumealboxtitle {
-                    @include roboto();
-                    font-size: 30px;
-                    font-weight: bold;
-                    padding-top: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                .menumealboxsubtitle {
-                    @include roboto();
-                    font-size: 25px;
-                    font-weight: lighter;
-                    padding-top: 10px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .menumealboxprice {
-                @include roboto();
-                flex: 1;
-                font-size: 25px;
-                font-weight: bold;
-                color: #353535;
-                text-align: end;
-                padding-top: 65px;
-                transition: 500ms;
-                margin-right: -60px;
-                margin-left: 30px;
-            }
-
-            .menumealboxcheck {
-                flex: 0;
-                color: #f6f6f6;
-                background-color: $tertiaire;
-                text-align: center;
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
-                transform: translateX(175px);
-                transition: 500ms;
-
-                i {
-                    transition: transform 500ms;
-                    margin-left: 30px;
-                    margin-top: 35px;
-                    margin-right: 30px;
-                    font-size: 40px;
-                }
-            }
 
             &:hover .menumealboxcheck {
-                transform: translateX(0px);
-                margin-left: 100px;
+                @include menumealboxhoveranim();
             }
 
             &:hover i {
-                transform: rotate(1080deg);
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxplats {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxdesserts {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxtext {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            padding-left: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            
+            .menumealboxtitle {
+                @include roboto();
+                font-size: 30px;
+                font-weight: bold;
+                padding-top: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .menumealboxsubtitle {
+                @include roboto();
+                font-size: 25px;
+                font-weight: lighter;
+                padding-top: 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .menumealboxprice {
+            @include roboto();
+            font-size: 25px;
+            font-weight: bold;
+            color: #353535;
+            text-align: end;
+            flex: 1;
+            padding-top: 65px;
+            transition: 500ms;
+            margin-right: -60px;
+            margin-left: 30px;
+        }
+
+        .menumealboxcheck {
+            flex: 0;
+            color: #f6f6f6;
+            background-color: $tertiaire;
+            text-align: center;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            transform: translateX(175px);
+            transition: 500ms;
+
+            i {
+                transition: transform 500ms;
+                margin-left: 30px;
+                margin-top: 35px;
+                margin-right: 30px;
+                font-size: 40px;
             }
         }
 
@@ -558,6 +690,10 @@ footer {
             margin-top: 100px;
             margin-right: 200px;
             box-shadow: 0px 21px 31px rgb(175, 175, 175);
+
+            &:hover {
+                @include secondairefancyhover();
+            }
         }
     }
 }
@@ -589,6 +725,12 @@ footer {
                 -webkit-text-stroke: 2px black;
 
                 &:hover {
+                    animation: fadein 2s;
+                    -webkit-transition: opacity 2s ease-in;
+                    -moz-transition: opacity 2s ease-in;
+                    -ms-transition: opacity 2s ease-in;
+                    -o-transition: opacity 2s ease-in;
+                    transition: opacity 2s ease-in;
                     @include secondairefancy();
                     background-clip: text;
                     -webkit-background-clip: text;
@@ -609,87 +751,110 @@ footer {
             margin-top: 20px;
         }
 
-        .menumealbox {
-            width: 710px;
-            height: 110px;
-            border-radius: 30px;
-            margin-left: 30px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0px 21px 31px rgb(209, 209, 209);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            overflow: hidden;
+        .menumealboxentrees {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
 
-            .menumealboxtext {
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
-                padding-left: 20px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                
-                .menumealboxtitle {
-                    @include roboto();
-                    font-size: 30px;
-                    font-weight: bold;
-                    padding-top: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                .menumealboxsubtitle {
-                    @include roboto();
-                    font-size: 25px;
-                    font-weight: lighter;
-                    padding-top: 10px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .menumealboxprice {
-                @include roboto();
-                flex: 1;
-                font-size: 25px;
-                font-weight: bold;
-                color: #353535;
-                text-align: end;
-                padding-top: 65px;
-                transition: 500ms;
-                margin-right: -60px;
-                margin-left: 30px;
-            }
-
-            .menumealboxcheck {
-                flex: 0;
-                color: #f6f6f6;
-                background-color: $tertiaire;
-                text-align: center;
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
-                transform: translateX(175px);
-                transition: 500ms;
-
-                i {
-                    transition: transform 500ms;
-                    margin-left: 30px;
-                    margin-top: 35px;
-                    margin-right: 30px;
-                    font-size: 40px;
-                }
-            }
 
             &:hover .menumealboxcheck {
-                transform: translateX(0px);
-                margin-left: 100px;
+                @include menumealboxhoveranim();
             }
 
             &:hover i {
-                transform: rotate(1080deg);
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxplats {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxdesserts {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxtext {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            padding-left: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            
+            .menumealboxtitle {
+                @include roboto();
+                font-size: 30px;
+                font-weight: bold;
+                padding-top: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .menumealboxsubtitle {
+                @include roboto();
+                font-size: 25px;
+                font-weight: lighter;
+                padding-top: 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .menumealboxprice {
+            @include roboto();
+            font-size: 25px;
+            font-weight: bold;
+            color: #353535;
+            text-align: end;
+            flex: 1;
+            padding-top: 65px;
+            transition: 500ms;
+            margin-right: -60px;
+            margin-left: 30px;
+        }
+
+        .menumealboxcheck {
+            flex: 0;
+            color: #f6f6f6;
+            background-color: $tertiaire;
+            text-align: center;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            transform: translateX(175px);
+            transition: 500ms;
+
+            i {
+                transition: transform 500ms;
+                margin-left: 30px;
+                margin-top: 35px;
+                margin-right: 30px;
+                font-size: 40px;
             }
         }
 
@@ -708,6 +873,10 @@ footer {
             margin-top: 100px;
             margin-right: 200px;
             box-shadow: 0px 21px 31px rgb(175, 175, 175);
+
+            &:hover {
+                @include secondairefancyhover();
+            }
         }
     }
 }
@@ -739,6 +908,12 @@ footer {
                 -webkit-text-stroke: 2px black;
 
                 &:hover {
+                    animation: fadein 2s;
+                    -webkit-transition: opacity 2s ease-in;
+                    -moz-transition: opacity 2s ease-in;
+                    -ms-transition: opacity 2s ease-in;
+                    -o-transition: opacity 2s ease-in;
+                    transition: opacity 2s ease-in;
                     @include secondairefancy();
                     background-clip: text;
                     -webkit-background-clip: text;
@@ -759,87 +934,110 @@ footer {
             margin-top: 20px;
         }
 
-        .menumealbox {
-            width: 710px;
-            height: 110px;
-            border-radius: 30px;
-            margin-left: 30px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0px 21px 31px rgb(209, 209, 209);
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            overflow: hidden;
+        .menumealboxentrees {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
 
-            .menumealboxtext {
-                border-top-left-radius: 30px;
-                border-bottom-left-radius: 30px;
-                padding-left: 20px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                
-                .menumealboxtitle {
-                    @include roboto();
-                    font-size: 30px;
-                    font-weight: bold;
-                    padding-top: 20px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                .menumealboxsubtitle {
-                    @include roboto();
-                    font-size: 25px;
-                    font-weight: lighter;
-                    padding-top: 10px;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-            }
-
-            .menumealboxprice {
-                @include roboto();
-                flex: 1;
-                font-size: 25px;
-                font-weight: bold;
-                color: #353535;
-                text-align: end;
-                padding-top: 65px;
-                transition: 500ms;
-                margin-right: -60px;
-                margin-left: 30px;
-            }
-
-            .menumealboxcheck {
-                flex: 0;
-                color: #f6f6f6;
-                background-color: $tertiaire;
-                text-align: center;
-                border-top-right-radius: 30px;
-                border-bottom-right-radius: 30px;
-                transform: translateX(175px);
-                transition: 500ms;
-
-                i {
-                    transition: transform 500ms;
-                    margin-left: 30px;
-                    margin-top: 35px;
-                    margin-right: 30px;
-                    font-size: 40px;
-                }
-            }
 
             &:hover .menumealboxcheck {
-                transform: translateX(0px);
-                margin-left: 100px;
+                @include menumealboxhoveranim();
             }
 
             &:hover i {
-                transform: rotate(1080deg);
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxplats {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxdesserts {
+            @include menumealbox();
+            animation-name: fadein;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: backwards;
+
+            &:hover .menumealboxcheck {
+                @include menumealboxhoveranim();
+            }
+
+            &:hover i {
+                @include menumealboxcheckanim();
+            }
+        }
+
+        .menumealboxtext {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            padding-left: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            
+            .menumealboxtitle {
+                @include roboto();
+                font-size: 30px;
+                font-weight: bold;
+                padding-top: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .menumealboxsubtitle {
+                @include roboto();
+                font-size: 25px;
+                font-weight: lighter;
+                padding-top: 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .menumealboxprice {
+            @include roboto();
+            font-size: 25px;
+            font-weight: bold;
+            color: #353535;
+            text-align: end;
+            flex: 1;
+            padding-top: 65px;
+            transition: 500ms;
+            margin-right: -60px;
+            margin-left: 30px;
+        }
+
+        .menumealboxcheck {
+            flex: 0;
+            color: #f6f6f6;
+            background-color: $tertiaire;
+            text-align: center;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            transform: translateX(175px);
+            transition: 500ms;
+
+            i {
+                transition: transform 500ms;
+                margin-left: 30px;
+                margin-top: 35px;
+                margin-right: 30px;
+                font-size: 40px;
             }
         }
 
@@ -858,6 +1056,10 @@ footer {
             margin-top: 100px;
             margin-right: 200px;
             box-shadow: 0px 21px 31px rgb(175, 175, 175);
+
+            &:hover {
+                @include secondairefancyhover();
+            }
         }
     }
 }
