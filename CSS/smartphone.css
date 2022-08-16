@@ -29,7 +29,6 @@ html, body {
   align-items: center;
   justify-content: center;
   background-color: white;
-  transform: 1000ms;
 }
 .preloader .loader {
   display: block;
@@ -1061,7 +1060,6 @@ footer i {
     align-items: center;
     justify-content: center;
     background-color: white;
-    transform: 1000ms;
   }
   .preloader .loader {
     display: block;
@@ -2113,7 +2111,6 @@ footer i {
     align-items: center;
     justify-content: center;
     background-color: white;
-    transform: 1000ms;
   }
   .preloader .loader {
     display: block;
