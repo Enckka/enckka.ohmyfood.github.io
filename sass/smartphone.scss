@@ -1,5 +1,5 @@
 html, body {
-    width: 768px;
+    width: 100%;
     height: 100%;
 }
 
@@ -98,7 +98,7 @@ $tertiaire: #99E2D0;
 
 #headertitle {
     height: 135px;
-    width: 768px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -303,7 +303,7 @@ $tertiaire: #99E2D0;
 
 footer {
     height: 350px;
-    width: 768px;
+    width: 100%;
     background: #353535;
     display: flex;
     flex-direction: row;
@@ -327,6 +327,11 @@ footer {
     i {
         float: left;
         margin-right: 15px;
+    }
+
+    li a {
+        text-decoration: none;
+        color: white;
     }
 }
 
@@ -3252,6 +3257,3 @@ footer {
         }
     }
 }
-
-
-
